@@ -4,7 +4,7 @@ import pygame
 class Game:
 
   __images_path__ = "shmup.assets.images"
-  __hero_path__ = "hero.png"
+  __hero_path__ = "superman.png"
   __screen_size = (640,480)
   __hero_speed = 0.1
 
