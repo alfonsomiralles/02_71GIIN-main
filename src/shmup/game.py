@@ -1,5 +1,6 @@
 from importlib import resources
-import pygame
+import pygame, sys
+from settings import *
 
 class Game:
 
@@ -11,8 +12,9 @@ class Game:
   def __init__(self):
     pygame.init()
 
+    self.clock =pygame.time.Clock()
     self.__screen = pygame.display.set_mode(Game.__screen_size, 0, 32)
-    pygame.display.set_caption("Shmup Game!!!")
+    pygame.display.set_caption("Gods and wars")
 
     with resources.path(Game.__images_path__, Game.__hero_path__) as hero_file:
       self.__hero_image = pygame.image.load(hero_file).convert_alpha()
@@ -28,6 +30,7 @@ class Game:
 
   def run(self):
     while self.__running:
+      self.clock.tick(FPS)
       self.__process_events()
       self.__update()
       self.__render()
@@ -43,6 +46,7 @@ class Game:
       elif event.type == pygame.KEYUP:
         self.__handle_player_input(event.key, False)
 
+#se actualiza el estado del juego
   def __update(self):
     movement = pygame.math.Vector2(0.0, 0.0)
     if self.__hero_moving_up:
@@ -56,6 +60,7 @@ class Game:
 
     self.__hero_position += movement
 
+#se pinta el estado del juego
   def __render(self):
     self.__screen.fill((0,0,0))
     self.__screen.blit(self.__hero_image, self.__hero_position)
