@@ -1,13 +1,13 @@
 from importlib import resources
-import pygame, sys
-from settings import *
+import pygame
+from shmup import settings
 
 class Game:
 
   __images_path__ = "shmup.assets.images"
   __hero_path__ = "superman.png"
   __screen_size = (640,480)
-  __hero_speed = 0.1
+  __hero_speed = 3.5
 
   def __init__(self):
     pygame.init()
@@ -30,7 +30,7 @@ class Game:
 
   def run(self):
     while self.__running:
-      self.clock.tick(FPS)
+      self.clock.tick(settings.FPS)
       self.__process_events()
       self.__update()
       self.__render()
